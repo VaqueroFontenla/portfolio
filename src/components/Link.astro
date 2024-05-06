@@ -1,0 +1,51 @@
+---
+interface Props {
+  label: string;
+  url: string;
+  title: string;
+}
+
+const { label, url, title } = Astro.props;
+---
+
+<a class="link" aria-label={label} href={url} data-text={title}>
+  {title}
+</a>
+
+<style>
+  .link {
+    display: inline-block;
+    position: relative;
+    padding: 0.5rem;
+    transition-property: background-color, border-color, color, fill, stroke,
+      opacity, box-shadow, transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+
+  .link::before {
+    top: 0.5rem;
+    left: 0.5rem;
+    width: 0;
+    color: #f59e0b;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    content: attr(data-text);
+    transition: all 0.9s;
+  }
+
+  .link:hover:before {
+    width: 100%;
+  }
+
+  @keyframes nav-shadown {
+    to {
+      box-shadow: 0 0 0 1px rgb(59 130 246 / 0.5);
+      box-shadow:
+        0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      backdrop-blur: blur(8px);
+    }
+  }
+</style>

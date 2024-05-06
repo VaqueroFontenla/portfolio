@@ -1,5 +1,19 @@
 ---
+import Link from "./Link.astro";
+
 const currentYear = new Date().getFullYear();
+const footerNavItems = [
+  {
+    title: "Sobre mí",
+    label: "sobre-mi",
+    url: "/#sobre-mi",
+  },
+  {
+    title: "Contacto",
+    label: "contacto",
+    url: "mailto:loret.vaquero@gmail.com",
+  },
+];
 ---
 
 <footer class="footer">
@@ -8,19 +22,16 @@ const currentYear = new Date().getFullYear();
       >© {currentYear}
       Loretus. Ningún derecho reservado</span
     >
+    <ul class="footer-links-list">
+      {
+        footerNavItems.map((link) => (
+          <li>
+            <Link label={link.label} url={link.url} title={link.title} />
+          </li>
+        ))
+      }
+    </ul>
   </div>
-  <ul
-    class="flex flex-wrap items-center mt-3 text-sm font-medium dark:text-white/90 sm:mt-0"
-  >
-    <li>
-      <a href="/#sobre-mi" class="hover:underline me-4 md:me-6">Sobre mí</a>
-    </li>
-    <li>
-      <a id="contacto" href="mailto:miduga@gmail.com" class="hover:underline"
-        >Contacto</a
-      >
-    </li>
-  </ul>
 </footer>
 
 <style>
@@ -34,9 +45,18 @@ const currentYear = new Date().getFullYear();
   .footer-content {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 1rem;
     margin: 0 auto;
   }
+
+  .footer-links-list {
+    display: flex;
+    column-gap: var(--medium-spacing);
+    margin: 0;
+    padding: 0;
+  }
+
   @media (min-width: 768px) {
     .footer-content {
       max-width: var(--max-width-tablet);
