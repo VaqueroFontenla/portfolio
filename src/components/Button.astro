@@ -1,0 +1,79 @@
+---
+export enum ButtonType {
+  BUTTON = "button",
+  SUBMIT = "submit",
+  LINK = "link",
+}
+
+interface ButtonProps {
+  type: ButtonType;
+  url?: string;
+  onClickHandler?: () => void;
+}
+
+const { type, url, onClickHandler } = Astro.props;
+---
+
+<>
+  {
+    type === ButtonType.LINK && (
+      <a
+        class="button"
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="External Link"
+      >
+        <slot />
+      </a>
+    )
+  }
+  {
+    type === ButtonType.BUTTON ||
+      (type === ButtonType.SUBMIT && (
+        <button class="button" type={type} onclick={onClickHandler}>
+          <slot />
+        </button>
+      ))
+  }
+</>
+
+<style>
+  .button {
+    display: inline-grid;
+    grid-template-columns: auto 1fr;
+    column-gap: var(--medium-spacing);
+    align-items: center;
+    padding: 0.5rem 1rem;
+    margin: 0 auto;
+    font-size: 1rem;
+    font-weight: 700;
+    border: 0.125rem solid var(--font-primary-color);
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    text-align: center;
+    background: linear-gradient(
+      to left,
+      var(--bg-color) 50%,
+      var(--font-primary-color) 50%
+    );
+    background-size: 200% 100%;
+    background-position: right bottom;
+    cursor: pointer;
+    transition: all ease 0.3s;
+  }
+
+  .button:hover,
+  .button:active {
+    cursor: pointer;
+    outline: none;
+    background-position: left bottom;
+    color: var(--bg-color);
+  }
+
+  .button:focus {
+    outline-color: var(--subtext-color);
+    outline-style: dotted;
+    outline-width: 2px;
+  }
+</style>

@@ -1,0 +1,122 @@
+---
+import Button, { ButtonType } from "./Button.astro";
+import LinkedInIcon from "./icons/LinkedIn.astro";
+import MailIcon from "./icons/Mail.astro";
+---
+
+<section class="hero">
+  <img class="hero-image" src="me.webp" alt="Loreto Vaquero" />
+  <div class="hero-content">
+    <span class="hero-intro">Hola <span class="wave">👋</span></span>
+    <h1 class="hero-title">Soy Loreto Vaquero</h1>
+    <h2 class="hero-subtitle">
+      Desarrolladora <u>frontend</u> de Vigo
+    </h2>
+    <p>
+      +5 de experiencia. Enfoque en el ecosistema de React y apasionada por la
+      visualización de datos GIS.
+    </p>
+    <nav class="hero-social-phils">
+      <Button type={ButtonType.LINK} url="mailto:loret.vaquero@gmail.com"
+        ><MailIcon />
+        <span> Contáctame </span>
+      </Button>
+      <Button
+        type={ButtonType.LINK}
+        url="https://www.linkedin.com/in/loretovaquerofontenla/"
+        ><LinkedInIcon /><span>LinkedIn</span></Button
+      >
+    </nav>
+  </div>
+  <style>
+    .hero {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 2.5rem;
+      width: 100%;
+      margin: 0 auto;
+      padding: 9rem 0;
+    }
+
+    .hero-image {
+      border-radius: 50%;
+      vertical-align: middle;
+      width: 100%;
+    }
+    .hero-content {
+    }
+
+    .hero-intro {
+      font-size: 2.5rem;
+      line-height: 4rem;
+      font-weight: 700;
+    }
+
+    .hero-title {
+      font-size: 2.625rem;
+      line-height: 4rem;
+      margin: 0;
+    }
+
+    .hero-subtitle {
+      margin: 0;
+    }
+
+    .hero-subtitle u {
+      box-shadow: inset 0 -0.7em 0 var(--highlight-color);
+      text-decoration: none;
+      transition: box-shadow 0.3s ease-out;
+    }
+
+    .hero-social-phils {
+      display: grid;
+      grid-template-columns: repeat(2, auto);
+      column-gap: var(--medium-spacing);
+      justify-content: start;
+    }
+    .wave {
+      animation-name: wave-animation; /* Refers to the name of your @keyframes element below */
+      animation-duration: 2.5s; /* Change to speed up or slow down */
+      animation-iteration-count: infinite; /* Never stop waving :) */
+      transform-origin: 70% 70%; /* Pivot around the bottom-left palm */
+      display: inline-block;
+    }
+
+    @keyframes wave-animation {
+      0% {
+        transform: rotate(0deg);
+      }
+      10% {
+        transform: rotate(14deg);
+      } /* The following five values can be played with to make the waving more or less extreme */
+      20% {
+        transform: rotate(-8deg);
+      }
+      30% {
+        transform: rotate(14deg);
+      }
+      40% {
+        transform: rotate(-4deg);
+      }
+      50% {
+        transform: rotate(10deg);
+      }
+      60% {
+        transform: rotate(0deg);
+      } /* Reset for the last half to pause */
+      100% {
+        transform: rotate(0deg);
+      }
+    }
+    @media (min-width: 768px) {
+      .hero {
+        max-width: var(--max-width-tablet);
+      }
+    }
+    @media (min-width: 1024px) {
+      .hero {
+        max-width: var(--max-width-laptop);
+      }
+    }
+  </style>
+</section>

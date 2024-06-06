@@ -38,14 +38,19 @@ const { title } = Astro.props;
     --medium-spacing: 16px;
     --large-spacing: 24px;
     --xlarge-spacing: 48px;
+    --border-radius: 1rem;
+
+    --bg-color: #f5f6fe;
+    --font-primary-color: #1f2937;
+    --highlight-color: #cdf3e1;
   }
   html {
     font-family: "Onest", system-ui, sans-serif;
     scroll-behavior: smooth;
   }
   body {
-    background: #f5f6fe;
-    color: #1f2937;
+    background: var(--bg-color);
+    color: var(--font-primary-color);
     display: flex;
     flex-direction: column;
   }
