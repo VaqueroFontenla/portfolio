@@ -1,0 +1,89 @@
+---
+import ExperienceItem from "./ExperienceItem.astro";
+import Briefcase from "./icons/Briefcase.astro";
+const EXPERIENCIE = [
+  {
+    date: "Mayo 2022 - ",
+    title: "Senior Frontend Developer",
+    company: "Guud TV",
+    companyLink: "https://www.guud.tv/",
+    description:
+      "Desarrollamos aplicaciones para marcas que necesitan contactar con su audiencia en tiempo real. Trabajamos con todo el ecosistema de react poniendo el foco en la calidad del código, buenas prácticas y perfomance.",
+    stack: [
+      "react",
+      "next.js",
+      "typescript",
+      "styled-components",
+      "react-query",
+    ],
+  },
+  {
+    date: "Enero 2020 - Mayo 2022",
+    title: "Frontend Developer",
+    company: "Salesland",
+    companyLink: "https://salesland.net/",
+    description:
+      "Responsable de desarrollo frontend de aplicaciones de uso interno para el área de RRHH.",
+    stack: [
+      "react",
+      "next.js",
+      "typescript",
+      "styled-components",
+      "jest",
+      "testing-library",
+    ],
+  },
+  {
+    date: "Junio 2019 - Diciembre 2019",
+    title: "Frontend Developer",
+    company: "notikumi",
+    companyLink: "https://www.notikumi.com/",
+    description:
+      "Responsable del desarrollo y mantenimiento de la parte frontend de la aplicación web para venta de entradas",
+    stack: ["Angular6", "Bootstrap", "SASS"],
+  },
+];
+---
+
+<section class="experience">
+  <h2 class="title"><Briefcase class="size-8" />Experiencia laboral</h2>
+  <ol class="experience-list">
+    {
+      EXPERIENCIE.map((experiencie) => (
+        <li class="">
+          <ExperienceItem {...experiencie} />
+        </li>
+      ))
+    }
+  </ol>
+</section>
+<style>
+  .experience {
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+
+  .experience-list {
+    position: relative;
+    margin-top: 2rem;
+  }
+
+  .title {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: var(--small-spacing);
+    align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    .experience {
+      max-width: var(--max-width-tablet);
+    }
+  }
+  @media (min-width: 1024px) {
+    .experience {
+      max-width: var(--max-width-laptop);
+    }
+  }
+</style>

@@ -1,0 +1,103 @@
+---
+interface Props {
+  title: string;
+  company: string;
+  description: string;
+  companyLink?: string;
+  link?: string;
+  date: string;
+}
+
+const { title, company, description, link, date } = Astro.props;
+---
+
+<div class="experience-item">
+  <div class="experience-item-main-info">
+    <div class="sticky">
+      <span class="bullet">&bull;</span>
+      <h3 class="experience-item-title">{title}</h3>
+      <h4 class="experience-item-company">
+        {company}
+      </h4>
+      <time class="experience-item-time">{date}</time>
+    </div>
+  </div>
+  <div class="experience-item-aux-info">{description}</div>
+  <style>
+    .experience-item {
+      display: grid;
+      position: relative;
+      padding-bottom: 3rem;
+      margin: 0 3rem;
+    }
+
+    .experience-item-main-info {
+      position: relative;
+      padding-bottom: 1rem;
+    }
+
+    .experience-item::before {
+      content: "";
+      position: absolute;
+      width: 2px;
+      background-color: #bfbfbf;
+      left: -35px;
+      height: 100%;
+    }
+
+    .sticky {
+      position: sticky;
+      top: 0;
+    }
+
+    .bullet {
+      position: absolute;
+      border-radius: 9999px;
+      font-size: 3rem;
+      line-height: 1;
+      color: var(--highlight-hard-color);
+      left: -42px;
+    }
+
+    .experience-item-title {
+      font-size: 1.25rem;
+      line-height: 1.75rem;
+      font-weight: 700;
+      color: var(--highlight-hard-color);
+    }
+
+    .experience-item-company {
+      font-size: 1.25rem;
+      line-height: 1.75rem;
+      font-weight: 600;
+      color: #4b5563;
+    }
+
+    .experience-item-time {
+      font-size: 0.85rem;
+      line-height: 1.25rem;
+    }
+
+    .experience-item-aux-info {
+      display: flex;
+      position: relative;
+      padding-bottom: 1rem;
+      flex-direction: column;
+      gap: 0.5rem;
+      color: #4b5563;
+    }
+
+    @media (min-width: 768px) {
+      .experience-item {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 2.5rem;
+      }
+      .experience-item-main-info {
+        grid-column: span 2 / span 2;
+      }
+      .experience-item-aux-info {
+        grid-column: span 3 / span 3;
+      }
+    }
+  </style>
+</div>

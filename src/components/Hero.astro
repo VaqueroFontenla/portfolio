@@ -31,11 +31,10 @@ import MailIcon from "./icons/Mail.astro";
   <style>
     .hero {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      column-gap: 2.5rem;
+      row-gap: 2.5rem;
       width: 100%;
       margin: 0 auto;
-      padding: 9rem 0;
+      padding: 9rem 1rem 4rem 1rem;
     }
 
     .hero-image {
@@ -111,6 +110,9 @@ import MailIcon from "./icons/Mail.astro";
     @media (min-width: 768px) {
       .hero {
         max-width: var(--max-width-tablet);
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 2.5rem;
+        padding: 9rem 0 4rem 0;
       }
     }
     @media (min-width: 1024px) {
