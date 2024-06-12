@@ -43,10 +43,15 @@ const formatDate = new Intl.DateTimeFormat("es", {
     padding: 2rem 1rem;
     border-radius: 0.75rem;
     box-shadow:
-      0 10px 15px -3px rgba(0, 0, 0, 0.1),
-      0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    backdrop-blur: blur(8px);
+      0 10px 15px 3px rgba(0, 0, 0, 0.1),
+      0 4px 6px 3px rgba(0, 0, 0, 0.05);
   }
+  .article:hover {
+    box-shadow:
+      0 10px 15px 3px rgba(0, 0, 0, 0.5),
+      0 4px 6px 3px rgba(0, 0, 0, 0.1);
+  }
+
   .article-tag-list {
     display: flex;
     column-gap: var(--small-spacing);
