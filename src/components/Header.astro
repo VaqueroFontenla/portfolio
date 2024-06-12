@@ -41,7 +41,7 @@ const navItems = [
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 1rem;
+    margin: 1rem 0;
     position: fixed;
     top: 0;
     z-index: 10;
@@ -54,6 +54,7 @@ const navItems = [
     background-color: var(--bg-color);
     padding: 0 0.75rem;
     border-radius: 1rem;
+    font-size: 0.75rem;
     line-height: 1.25rem;
     font-weight: 500;
     animation: nav-shadown 1s linear both;
@@ -62,11 +63,19 @@ const navItems = [
   }
   @keyframes nav-shadown {
     to {
-      box-shadow: 0 0 0 1px rgb(59 130 246 / 0.5);
       box-shadow:
         0 10px 15px -3px rgba(0, 0, 0, 0.1),
         0 4px 6px -2px rgba(0, 0, 0, 0.05);
       backdrop-blur: blur(8px);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .hero {
+      margin: 1rem;
+    }
+    .nav {
+      font-size: 1rem;
     }
   }
 </style>

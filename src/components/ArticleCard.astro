@@ -1,0 +1,55 @@
+---
+import Tag from "./Tag.astro";
+
+interface Props {
+  title: string;
+  link?: string;
+  date: string;
+  tags: string[];
+}
+
+const { title, link, date, tags } = Astro.props;
+const formatDate = new Intl.DateTimeFormat("es", {
+  month: "short",
+  day: "numeric",
+  year: "numeric",
+}).format(new Date(date));
+---
+
+<a href={link} target="_blank" title={title}>
+  <article class="article">
+    <div class="article-content">
+      <h4>{title}</h4>
+      <time>{formatDate}</time>
+      <ol class="article-tag-list">
+        {
+          tags.map((tag) => (
+            <li>
+              <Tag>{tag}</Tag>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </article>
+</a>
+<style>
+  .article {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    min-width: 230px;
+    max-width: 230px;
+    padding: 2rem 1rem;
+    border-radius: 0.75rem;
+    box-shadow:
+      0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    backdrop-blur: blur(8px);
+  }
+  .article-tag-list {
+    display: flex;
+    column-gap: var(--small-spacing);
+    margin-top: var(--small-spacing);
+  }
+</style>

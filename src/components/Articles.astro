@@ -1,0 +1,77 @@
+---
+import ArticleCard from "./ArticleCard.astro";
+import ExperienceItem from "./ExperienceItem.astro";
+import Article from "./icons/Article.astro";
+import Briefcase from "./icons/Briefcase.astro";
+const ARTICLES = [
+  {
+    date: "2021-08-11",
+    title: "Validar fechas con Javascript",
+    link: "https://medium.com/@LoretoVaquero/validar-fechas-con-javascript-fe1b1c7b6524",
+    tags: ["javascript"],
+  },
+  {
+    date: "2020-01-15",
+    title: "Web Scraping: Intro para “desorientados”",
+    link: "https://medium.com/@LoretoVaquero/web-scraping-intro-para-desorientados-2cd230241270",
+    tags: ["web scraping"],
+  },
+  {
+    date: "2018-09-06",
+    title: "La penúltima guía para iniciarte en Git, GitHub y GitLab",
+    link: "https://medium.com/@LoretoVaquero/la-pen%C3%BAltima-gu%C3%ADa-para-iniciarte-en-git-github-y-gitlab-1a385ffb0ec3",
+    tags: ["git"],
+  },
+];
+---
+
+<section class="articles">
+  <h2 class="title"><Article />Algunos artículos</h2>
+  <ol class="articles-list">
+    {
+      ARTICLES.map((article) => (
+        <li>
+          <ArticleCard {...article} />
+        </li>
+      ))
+    }
+  </ol>
+</section>
+<style>
+  .articles {
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+
+  .articles-list {
+    display: flex;
+    justify-content: flex-start;
+    column-gap: var(--medium-spacing);
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 1rem 0;
+    scrollbar-color: var(--bg-color) var(--bg-color);
+  }
+
+  .title {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: var(--small-spacing);
+    align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    .articles {
+      max-width: var(--max-width-tablet);
+    }
+    .articles-list {
+      scrollbar-color: var(--font-secondary-color) var(--bg-color);
+    }
+  }
+  @media (min-width: 1024px) {
+    .articles {
+      max-width: var(--max-width-laptop);
+    }
+  }
+</style>
