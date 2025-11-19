@@ -1,4 +1,5 @@
 ---
+import Card from "./Card.astro";
 import Tag from "./Tag.astro";
 
 interface Props {
@@ -17,21 +18,23 @@ const formatDate = new Intl.DateTimeFormat("es", {
 ---
 
 <a href={link} target="_blank" title={title}>
-  <article class="article">
-    <div class="article-content">
-      <h4>{title}</h4>
-      <time>{formatDate}</time>
-      <ol class="article-tag-list">
-        {
-          tags.map((tag) => (
-            <li>
-              <Tag>{tag}</Tag>
-            </li>
-          ))
-        }
-      </ol>
+  <Card>
+    <div class="article">
+      <div class="article-content">
+        <h4>{title}</h4>
+        <time>{formatDate}</time>
+        <ol class="article-tag-list">
+          {
+            tags.map((tag) => (
+              <li>
+                <Tag>{tag}</Tag>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
     </div>
-  </article>
+  </Card>
 </a>
 <style>
   .article {
@@ -41,17 +44,7 @@ const formatDate = new Intl.DateTimeFormat("es", {
     min-width: 230px;
     max-width: 230px;
     padding: 2rem 1rem;
-    border-radius: 0.75rem;
-    box-shadow:
-      0 10px 15px 3px rgba(0, 0, 0, 0.1),
-      0 4px 6px 3px rgba(0, 0, 0, 0.05);
   }
-  .article:hover {
-    box-shadow:
-      0 10px 15px 3px rgba(0, 0, 0, 0.5),
-      0 4px 6px 3px rgba(0, 0, 0, 0.1);
-  }
-
   .article-tag-list {
     display: flex;
     column-gap: var(--small-spacing);

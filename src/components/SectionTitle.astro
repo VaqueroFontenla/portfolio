@@ -1,0 +1,17 @@
+---
+interface Props {
+  className?: string;
+}
+---
+
+<h2 class={`title ${Astro.props.className}`}>
+  <slot />
+</h2>
+<style>
+  .title {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: var(--small-spacing);
+    align-items: center;
+  }
+</style>

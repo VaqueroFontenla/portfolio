@@ -39,6 +39,11 @@ const { label, url, title } = Astro.props;
     width: 100%;
   }
 
+  .active-link {
+    color: var(--highlight-hard-color);
+    font-weight: bold;
+  }
+
   @keyframes nav-shadown {
     to {
       box-shadow: 0 0 0 1px rgb(59 130 246 / 0.5);

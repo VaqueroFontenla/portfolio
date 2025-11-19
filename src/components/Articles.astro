@@ -1,8 +1,8 @@
 ---
+import Section from "../layouts/Section.astro";
 import ArticleCard from "./ArticleCard.astro";
-import ExperienceItem from "./ExperienceItem.astro";
 import Article from "./icons/Article.astro";
-import Briefcase from "./icons/Briefcase.astro";
+import SectionTitle from "./SectionTitle.astro";
 const ARTICLES = [
   {
     date: "2021-08-11",
@@ -25,8 +25,11 @@ const ARTICLES = [
 ];
 ---
 
-<section class="articles">
-  <h2 class="title"><Article />Algunos artículos</h2>
+<Section id="articulos">
+  <SectionTitle>
+    <Article width="28" height="28" />
+    Algunos artículos
+  </SectionTitle>
   <ol class="articles-list">
     {
       ARTICLES.map((article) => (
@@ -36,21 +39,15 @@ const ARTICLES = [
       ))
     }
   </ol>
-</section>
+</Section>
 <style>
-  .articles {
-    width: 100%;
-    margin: 0 auto;
-    padding: 1rem;
-  }
-
   .articles-list {
     display: flex;
     justify-content: flex-start;
     column-gap: var(--medium-spacing);
     overflow-x: auto;
     overflow-y: hidden;
-    padding: 1rem 0;
+    padding: 1rem 0.5rem;
     scrollbar-color: var(--bg-color) var(--bg-color);
   }
 
@@ -62,16 +59,8 @@ const ARTICLES = [
   }
 
   @media (min-width: 768px) {
-    .articles {
-      max-width: var(--max-width-tablet);
-    }
     .articles-list {
       scrollbar-color: var(--font-secondary-color) var(--bg-color);
-    }
-  }
-  @media (min-width: 1024px) {
-    .articles {
-      max-width: var(--max-width-laptop);
     }
   }
 </style>

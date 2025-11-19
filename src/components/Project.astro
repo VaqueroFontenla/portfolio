@@ -1,0 +1,119 @@
+---
+import Card from "./Card.astro";
+import Link from "./Link.astro";
+import LinkButton from "./LinkButton.astro";
+import GitHubIcon from "./icons/GitHub.astro";
+import LinkIcon from "./icons/Link.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  link?: string;
+  github: string;
+  image: string;
+  tags: { name: string; icon: any }[];
+  index: number;
+}
+
+const { title, description, link, github, image, tags, index } = Astro.props;
+---
+
+<div class="project">
+  <Card>
+    <div class="project-image-card">
+      <img
+        alt="Project image"
+        class="project-image"
+        loading="lazy"
+        src={image}
+      />
+    </div>
+  </Card>
+  <div class={`project-info ${index % 2 === 0 ? "project-row-reverse" : ""}`}>
+    <h3>{title}</h3>
+    <p>{description}</p>
+    <footer class="project-info-footer">
+      {
+        github && (
+          <LinkButton href={github}>
+            <GitHubIcon />
+            Code
+          </LinkButton>
+        )
+      }
+      {
+        link && (
+          <LinkButton href={link}>
+            <LinkIcon />
+            Preview
+          </LinkButton>
+        )
+      }
+    </footer>
+    <style>
+      .project {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+
+      .project-image-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        overflow: hidden;
+        border-radius: var(--medium-border-radius);
+        transition: all 0.5s ease-in-out;
+        transform: translateY(0);
+      }
+
+      .project-info.project-row-reverse {
+        order: -1;
+      }
+
+      .project-image {
+        width: 100%;
+        height: 14rem;
+        object-fit: cover;
+        object-position: 50px 25px;
+        transition: all 0.5s ease;
+      }
+
+      .project-info-footer {
+        display: flex;
+        column-gap: 0.75rem;
+      }
+
+      @media (min-width: 768px) {
+        .project {
+          flex-direction: row;
+          gap: 0;
+          column-gap: 2rem;
+          row-gap: 0;
+        }
+
+        .project:hover .project-image-card .card {
+          transform: translateY(-0.25rem);
+        }
+
+        .project-image {
+          transform: scale(1.1); /* md:scale-110 */
+        }
+
+        .project:hover .project-image {
+          transform: scale(1.05); /* md:group-hover:scale-105 */
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .project:hover .project-image-card {
+          border-color: #374151;
+          border: 1px solid #1f2937;
+          background-color: rgba(31, 41, 55, 0.5);
+        }
+      }
+    </style>
+  </div>
+</div>

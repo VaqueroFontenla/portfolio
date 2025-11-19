@@ -1,0 +1,17 @@
+<article class="card">
+  <slot />
+</article>
+<style>
+  .card {
+    border-radius: var(--medium-border-radius);
+    box-shadow:
+      0 10px 15px 3px rgba(0, 0, 0, 0.1),
+      0 4px 6px 3px rgba(0, 0, 0, 0.05);
+  }
+
+  .card:hover {
+    box-shadow:
+      0 10px 15px 3px rgba(0, 0, 0, 0.5),
+      0 4px 6px 3px rgba(0, 0, 0, 0.1);
+  }
+</style>

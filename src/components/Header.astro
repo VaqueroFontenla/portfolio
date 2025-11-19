@@ -14,6 +14,11 @@ const navItems = [
     url: "/#proyectos",
   },
   {
+    title: "Artículos",
+    label: "articulos",
+    url: "/#articulos",
+  },
+  {
     title: "Sobre mí",
     label: "sobre-mi",
     url: "/#sobre-mi",
@@ -36,6 +41,44 @@ const navItems = [
     <ThemeToggle />
   </nav>
 </header>
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const sections = document.querySelectorAll("section");
+    const navItems = document.querySelectorAll("header nav a");
+
+    const callback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          navItems.forEach((item) => {
+            if (item.getAttribute("aria-label") === entry.target.id) {
+              item.classList.add("active-link");
+            } else {
+              item.classList.remove("active-link");
+            }
+          });
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(callback, {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.3,
+    });
+
+    sections.forEach((section) => observer.observe(section));
+
+    // Limpieza cuando se cambia de pestaña
+    document.onvisibilitychange = () => {
+      if (document.visibilityState === "hidden") {
+        observer.disconnect();
+      } else {
+        sections.forEach((section) => observer.observe(section));
+      }
+    };
+  });
+</script>
+
 <style>
   .header {
     display: flex;

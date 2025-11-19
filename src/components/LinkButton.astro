@@ -1,0 +1,27 @@
+---
+const { href } = Astro.props;
+---
+
+<a target="_blank" href={href} role="link" class="link-button">
+  <slot />
+</a>
+<style>
+  .link-button {
+    display: inline-flex;
+    place-items: center;
+    padding: 0.5rem 0.75rem;
+    border: 0.0625rem solid var(--font-primary-color);
+    gap: 0.5rem;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    max-width: fit-content;
+    border-radius: var(--medium-border-radius);
+    font-size: 0.85rem;
+  }
+
+  .link-button:hover {
+    background-color: var(--font-primary-color);
+    color: var(--bg-color);
+  }
+</style>

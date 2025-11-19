@@ -1,0 +1,77 @@
+---
+import CodeIcon from "./icons/Code.astro";
+import ReactIcon from "./icons/React.astro";
+import AntdIcon from "./icons/Antd.astro";
+import Project from "./Project.astro";
+import Section from "../layouts/Section.astro";
+import SectionTitle from "./SectionTitle.astro";
+
+const TAGS = {
+  REACT: {
+    name: "React.js",
+    icon: ReactIcon,
+  },
+  ANTD: {
+    name: "Ant Design",
+    icon: AntdIcon,
+  },
+};
+
+const PROJECTS = [
+  {
+    title: "Oxygen Tank Crono - Monitorización botellas oxígeno",
+    description:
+      "PWD de monitorizacíon de botellas de oxígeno y poder controlar el tiempo de uso de cada una. Creado desde cero con React y Ant Design.",
+    link: "https://vaquerofontenla.github.io/oxygen_tank_crono/",
+    github: "https://github.com/VaqueroFontenla/oxygen_tank_crono",
+    image: "/projects/OxygenTankCrono.webp",
+    tags: [TAGS.REACT, TAGS.ANTD],
+  },
+  {
+    title: "Renfe Ticket Tracks - Rastreo de billetes Renfe",
+    description:
+      "Aplicación que usa web scraping para mostrar en un calendario los billetes más baratos del mes actual o de otro mes del año, en el trayecto Vigo–Madrid o Madrid–Vigo.",
+    github: "https://github.com/VaqueroFontenla/tracks_renfe_tickets",
+    image: "/projects/RenfeTicketTrack.webp",
+    tags: [TAGS.REACT, TAGS.ANTD],
+  },
+  {
+    title: "Ni Criterio Ni Criteria",
+    description:
+      "Sugerencias culturales recopiladas por un grupo de amigos en WhatsApp, convertidas en una aplicación web para practicar un nuevo framework. Con React, Gatsby y Styled Components.",
+    link: "https://vaquerofontenla.github.io/ni-criterio-ni-criteria/",
+    github: "https://github.com/VaqueroFontenla/ni-criterio-ni-criteria",
+    image: "/projects/NiCriterioNiCriteria.webp",
+    tags: [TAGS.REACT, TAGS.ANTD],
+  },
+];
+---
+
+<Section id="proyectos" data-section="proyectos">
+  <SectionTitle>
+    <CodeIcon width="28" height="28" />
+    Proyectos
+  </SectionTitle>
+  <ol class="projects-list">
+    {
+      PROJECTS.map((project, index) => (
+        <li>
+          <Project {...project} index={index} />
+        </li>
+      ))
+    }
+  </ol>
+</Section>
+<style>
+  .title {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: var(--small-spacing);
+    align-items: center;
+  }
+  .projects-list {
+    margin-top: 2rem;
+    display: grid;
+    row-gap: 2rem;
+  }
+</style>

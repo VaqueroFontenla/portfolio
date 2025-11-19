@@ -1,9 +1,12 @@
 ---
+import Section from "../layouts/Section.astro";
 import ExperienceItem from "./ExperienceItem.astro";
 import Briefcase from "./icons/Briefcase.astro";
+import SectionTitle from "./SectionTitle.astro";
+
 const EXPERIENCIE = [
   {
-    date: "Mayo 2022 - ",
+    date: "Mayo 2022 - Actualmente",
     title: "Senior Frontend Developer",
     company: "Guud TV",
     companyLink: "https://www.guud.tv/",
@@ -45,8 +48,11 @@ const EXPERIENCIE = [
 ];
 ---
 
-<section class="experience">
-  <h2 class="title"><Briefcase />Experiencia laboral</h2>
+<Section id="experiencia">
+  <SectionTitle>
+    <Briefcase width="28" height="28" />
+    Experiencia laboral
+  </SectionTitle>
   <ol class="experience-list">
     {
       EXPERIENCIE.map((experiencie) => (
@@ -56,34 +62,10 @@ const EXPERIENCIE = [
       ))
     }
   </ol>
-</section>
+</Section>
 <style>
-  .experience {
-    width: 100%;
-    margin: 0 auto;
-    padding: 1rem;
-  }
-
   .experience-list {
     position: relative;
     margin-top: 2rem;
-  }
-
-  .title {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    column-gap: var(--small-spacing);
-    align-items: center;
-  }
-
-  @media (min-width: 768px) {
-    .experience {
-      max-width: var(--max-width-tablet);
-    }
-  }
-  @media (min-width: 1024px) {
-    .experience {
-      max-width: var(--max-width-laptop);
-    }
   }
 </style>
