@@ -14,7 +14,7 @@ const NAV_ITEMS = [
 ---
 
 <header class="header">
-  <nav class="nav">
+  <nav class="nav" id="menu-navegacion">
     {
       NAV_ITEMS.map((PROFILE_SECTION) => (
         <Link
@@ -27,42 +27,54 @@ const NAV_ITEMS = [
     <ThemeToggle />
   </nav>
 </header>
+
 <script>
-  document.addEventListener("astro:page-load", () => {
-    const sections = document.querySelectorAll("section");
-    const navItems = document.querySelectorAll("header nav a");
+  const ACTIVE_CLASS = "active-link";
+  const links = document.querySelectorAll("#menu-navegacion a");
 
-    const callback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          navItems.forEach((item) => {
-            if (item.getAttribute("aria-label") === entry.target.id) {
-              item.classList.add("active-link");
-            } else {
-              item.classList.remove("active-link");
-            }
-          });
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(callback, {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.3,
-    });
-
-    sections.forEach((section) => observer.observe(section));
-
-    // Limpieza cuando se cambia de pestaña
-    document.onvisibilitychange = () => {
-      if (document.visibilityState === "hidden") {
-        observer.disconnect();
-      } else {
-        sections.forEach((section) => observer.observe(section));
-      }
-    };
+  const linkMap = new Map();
+  links.forEach((link) => {
+    const sectionId = link.getAttribute("aria-label");
+    if (sectionId) {
+      linkMap.set(sectionId, link);
+    }
   });
+  // 2. Función de Callback del Intersection Observer
+  const callback = (entries: any[]) => {
+    entries.forEach((entry) => {
+      // Obtener el ID de la sección observada (e.g., 'seccion1')
+      const targetId = entry.target.id;
+
+      // Obtener el link de navegación asociado
+      const link = linkMap.get(targetId);
+
+      if (link) {
+        if (entry.isIntersecting) {
+          links.forEach((l) => l.classList.remove(ACTIVE_CLASS));
+          link.classList.add(ACTIVE_CLASS);
+          console.log(`Sección activa: ${targetId}`);
+        } else {
+          link.classList.remove(ACTIVE_CLASS);
+        }
+      }
+    });
+  };
+  const options = {
+    root: null,
+    rootMargin: "0px 0px -50% 0px",
+    threshold: 0,
+  };
+
+  const observer = new IntersectionObserver(callback, options);
+
+  const sections = document.querySelectorAll("section");
+  if (sections.length > 0) {
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+  } else {
+    console.warn("No se encontraron secciones con ID para observar.");
+  }
 </script>
 
 <style>
@@ -95,7 +107,8 @@ const NAV_ITEMS = [
       box-shadow:
         0 10px 15px -3px rgba(0, 0, 0, 0.1),
         0 4px 6px -2px rgba(0, 0, 0, 0.05);
-      backdrop-blur: blur(8px);
+      backdrop-filter: blur(8px);
+      background-color: rgba(255, 255, 255, 0.5);
     }
   }
 
