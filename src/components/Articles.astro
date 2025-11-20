@@ -1,8 +1,6 @@
 ---
-import Section from "../layouts/Section.astro";
 import ArticleCard from "./ArticleCard.astro";
-import Article from "./icons/Article.astro";
-import SectionTitle from "./SectionTitle.astro";
+
 const ARTICLES = [
   {
     date: "2021-08-11",
@@ -25,21 +23,16 @@ const ARTICLES = [
 ];
 ---
 
-<Section id="articulos">
-  <SectionTitle>
-    <Article width="28" height="28" />
-    Algunos artículos
-  </SectionTitle>
-  <ol class="articles-list">
-    {
-      ARTICLES.map((article) => (
-        <li>
-          <ArticleCard {...article} />
-        </li>
-      ))
-    }
-  </ol>
-</Section>
+<ol class="articles-list">
+  {
+    ARTICLES.map((article) => (
+      <li>
+        <ArticleCard {...article} />
+      </li>
+    ))
+  }
+</ol>
+
 <style>
   .articles-list {
     display: flex;

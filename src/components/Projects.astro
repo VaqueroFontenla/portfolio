@@ -1,10 +1,7 @@
 ---
-import CodeIcon from "./icons/Code.astro";
 import ReactIcon from "./icons/React.astro";
 import AntdIcon from "./icons/Antd.astro";
 import Project from "./Project.astro";
-import Section from "../layouts/Section.astro";
-import SectionTitle from "./SectionTitle.astro";
 
 const TAGS = {
   REACT: {
@@ -47,21 +44,16 @@ const PROJECTS = [
 ];
 ---
 
-<Section id="proyectos" data-section="proyectos">
-  <SectionTitle>
-    <CodeIcon width="28" height="28" />
-    Proyectos
-  </SectionTitle>
-  <ol class="projects-list">
-    {
-      PROJECTS.map((project, index) => (
-        <li>
-          <Project {...project} index={index} />
-        </li>
-      ))
-    }
-  </ol>
-</Section>
+<ol class="projects-list">
+  {
+    PROJECTS.map((project, index) => (
+      <li>
+        <Project {...project} index={index} />
+      </li>
+    ))
+  }
+</ol>
+
 <style>
   .title {
     display: grid;

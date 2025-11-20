@@ -1,16 +1,35 @@
 ---
-import Articles from "../components/Articles.astro";
-import Experience from "../components/Experience.astro";
 import Hero from "../components/Hero.astro";
-import Projects from "../components/Projects.astro";
+import SectionTitle from "../components/SectionTitle.astro";
 import Layout from "../layouts/Layout.astro";
+import Section from "../layouts/Section.astro";
+
+import { PROFILE_SECTIONS } from "../data/profileSections";
 ---
 
 <Layout title="Loreto Vaquero - Frontend Developer">
   <main>
     <Hero />
-    <Experience />
-    <Projects />
-    <Articles />
+
+    {
+      PROFILE_SECTIONS.map((PROFILE_SECTION) => {
+        const Icon = PROFILE_SECTION.icon;
+        const Component = PROFILE_SECTION.component;
+
+        return (
+          <Section
+            id={PROFILE_SECTION.label}
+            data-section={PROFILE_SECTION.label}
+          >
+            <SectionTitle>
+              <Icon width="28" height="28" />
+              {PROFILE_SECTION.title}
+            </SectionTitle>
+
+            <Component />
+          </Section>
+        );
+      })
+    }
   </main>
 </Layout>

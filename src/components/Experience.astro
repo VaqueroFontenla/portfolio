@@ -1,8 +1,5 @@
 ---
-import Section from "../layouts/Section.astro";
 import ExperienceItem from "./ExperienceItem.astro";
-import Briefcase from "./icons/Briefcase.astro";
-import SectionTitle from "./SectionTitle.astro";
 
 const EXPERIENCIE = [
   {
@@ -48,21 +45,16 @@ const EXPERIENCIE = [
 ];
 ---
 
-<Section id="experiencia">
-  <SectionTitle>
-    <Briefcase width="28" height="28" />
-    Experiencia laboral
-  </SectionTitle>
-  <ol class="experience-list">
-    {
-      EXPERIENCIE.map((experiencie) => (
-        <li>
-          <ExperienceItem {...experiencie} />
-        </li>
-      ))
-    }
-  </ol>
-</Section>
+<ol class="experience-list">
+  {
+    EXPERIENCIE.map((experiencie) => (
+      <li>
+        <ExperienceItem {...experiencie} />
+      </li>
+    ))
+  }
+</ol>
+
 <style>
   .experience-list {
     position: relative;

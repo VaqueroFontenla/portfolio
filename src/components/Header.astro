@@ -1,28 +1,10 @@
 ---
+import { PROFILE_SECTIONS } from "../data/profileSections";
 import Link from "./Link.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 
-const navItems = [
-  {
-    title: "Experiencia",
-    label: "experiencia",
-    url: "/#experiencia",
-  },
-  {
-    title: "Proyectos",
-    label: "proyectos",
-    url: "/#proyectos",
-  },
-  {
-    title: "Artículos",
-    label: "articulos",
-    url: "/#articulos",
-  },
-  {
-    title: "Sobre mí",
-    label: "sobre-mi",
-    url: "/#sobre-mi",
-  },
+const NAV_ITEMS = [
+  ...PROFILE_SECTIONS,
   {
     title: "Contacto",
     label: "contacto",
@@ -34,8 +16,12 @@ const navItems = [
 <header class="header">
   <nav class="nav">
     {
-      navItems.map((link) => (
-        <Link label={link.label} url={link.url} title={link.title} />
+      NAV_ITEMS.map((PROFILE_SECTION) => (
+        <Link
+          label={PROFILE_SECTION.label}
+          url={PROFILE_SECTION.url}
+          title={PROFILE_SECTION.title}
+        />
       ))
     }
     <ThemeToggle />
